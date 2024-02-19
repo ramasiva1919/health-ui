@@ -35,7 +35,12 @@ function RegistrationForm(props) {
      const[data,setData]= useState([])
      const[originalData,setOriginalData]= useState([])
      const [editData,setEditData]= useState({})
+     const [searchItem, setSearchItem] = useState('')
 
+     const handleInputChange = (e) => { 
+       const searchTerm = e.target.value;
+       setSearchItem(searchTerm)
+     }
     let searchThree = []
 
     const handleSearchTwo = (event) => {
@@ -84,6 +89,7 @@ function RegistrationForm(props) {
       //    alert('Something went wrong while creating account')
       //  }
     })
+    
     console.log(obj,"obj")
     }
     useEffect(()=>{
@@ -125,7 +131,7 @@ function RegistrationForm(props) {
 
         axios.get(`http://localhost:9000/index/searchOne?name=${obj.name}`)
         .then(res=>{
-            console.log(res.data,"data-------------")
+            console.log(res.data,"data----------------------------")
 
             // const [name, setName] = useState("")
             // const [email, setEmail] = useState("")
@@ -178,6 +184,7 @@ const deleteUser=(id)=>{
 
 }
 
+
   useEffect(()=>{
     let offset = (pageNumber - 1) * limit;
     const slicedData = originalData.slice(offset, offset+limit)
@@ -207,7 +214,46 @@ const deleteUser=(id)=>{
       pages.push(i)
     }
   }
-
+const  searchpost=()=>{
+  
+  let obj={
+    searchItem:searchItem
+  }
+  // setSubiting(obj)
+  console.log(searchThree,"searchtreee")
+  axios.post('http://localhost:9000/index/user', obj)
+  .then(res => {
+      console.log(res,"res")
+   let responseData = res
+   console.log(responseData,"responsedata")
+    //  if (responseData) {
+    //    const user = responseData
+      
+    //  } else {
+    //    alert('Something went wrong while creating account')
+    //  }
+  })
+}
+const onButtonClick = () => {
+     
+  // using Java Script method to get PDF file
+  fetch("SamplePDF.pdf").then((response) => {
+    console.log(response,"response====")
+      response.blob().then((blob) => {
+       
+          // Creating new object of PDF file
+          const fileURL =
+              window.URL.createObjectURL(blob);
+               
+          // Setting various property values
+          let alink = document.createElement("a");
+          alink.href = fileURL;
+          const fileNAme = new Date()
+          alink.download = `${fileNAme}.pdf`;
+          alink.click();
+      });
+  });
+};
    return (
         <>
             <Form className='searchForm pd-0 mt-4'>
@@ -354,6 +400,42 @@ const deleteUser=(id)=>{
     <td>14</td>
     <td>10</td>
   </tr> */}
+ {/* if(data){  */}
+ <div>      
+      <input
+        type="text"
+       value={searchItem}
+        onChange={handleInputChange}
+       
+        placeholder='Type to search'
+      />
+      <Button  onClick={searchpost}>search</Button>
+    </div>
+ <div style={{"display":"flex","margin-bottom": "23px"}}>
+ {data.length>0&& data.map(obj=>( 
+ <div style={{"display":"flex"}}>
+ <div class="card" style={{"width": "18rem","margin-top": "30px","margin-left": "12px"}}>
+ 
+  <div class="card-body" style={{"top": "16px","margin-left": "12px"}}>
+    <h5 class="card-title" style={{"margin-left": "12px"}}>Card title</h5>
+     <h6 class="card-subtitle mb-2 text-muted" style={{"top": "16px","margin-left": "12px"}}>{obj.name}</h6>
+    <p class="card-text" style={{    "top": "16px","margin-left": "12px"}}>{obj.email}</p>
+    <a href="#" class="card-link" style={{"top": "16px","margin-left": "12px"}}>{obj.phone}</a>
+    <a href="#" class="card-link" style={{"top": "16px","margin-left": "12px"}}>{obj.address}</a>
+  </div>
+  </div>
+</div>))}</div>
+{/* } */}
+<center>
+                <h1>Welcome to Geeks for Geeks</h1>
+                <h3>
+                    Click on below button to download PDF
+                    file
+                </h3>
+                <button onClick={onButtonClick}>
+                    Download PDF
+                </button>
+            </center>
   <UploadButton uploader={uploader}
                 options={options}
                 onComplete={files => alert(files.map(x => x.fileUrl).join("\n"))}>
