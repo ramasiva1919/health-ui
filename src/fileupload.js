@@ -45,7 +45,7 @@ return (
                         Upload!
                     </button>
                 </div>
-                {upload.name}
+                {/* {upload.name} */}
             
     
     </>)}
