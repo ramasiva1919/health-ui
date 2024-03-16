@@ -1,13 +1,13 @@
-// let arr= "apple"
-// let output={}
-// for(let i=0;i<arr.length;i++){
-//     if(output[arr[i]]){
-//         output[arr[i]]+=1
-//     }else{
-//         output[arr[i]]=1
-//     }
-// }
-// console.log(output,"output")
+let arr= "apple"
+let output={}
+for(let i=0;i<arr.length;i++){
+    if(output[arr[i]]){
+        output[arr[i]]+=1
+    }else{
+        output[arr[i]]=1
+    }
+}
+console.log(output,"output")
 
 // let arrr=[1,2,3,4,5,5,6,6,7,7]
 // let uniqueArr=[]

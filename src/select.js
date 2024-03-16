@@ -8,10 +8,12 @@ const options = [
 ]
 
 const MyComponent = (props) => {
+
 const [select,setSelect]=useState({})
-console.log("props=====",select,props.select);
+console.log("props=====",select.select);
+console.log(props,"props")
   useEffect(()=>{
-    console.log(select,"select")
+    console.log(select,props,"select")
     setSelect(props.select)
   },[select])
 

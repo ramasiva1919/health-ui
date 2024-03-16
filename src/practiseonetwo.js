@@ -8,7 +8,6 @@ import Pagination from "react-bootstrap/Pagination";
 import { Uploader } from "uploader"; // Installed by "react-uploader".
 import { UploadButton } from "react-uploader";
 import FileUpload from './fileupload';
-import Login from '../src/login'
 // filename app.js
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -25,7 +24,7 @@ const uploader = Uploader({
 // Configuration options: https://www.bytescale.com/docs/upload-widget/frameworks/react#customize
 const options = { multi: true };
 
-function RegistrationForm(props) {
+function Practiseonetwo(props) {
      const [name, setName] = useState("")
    const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
@@ -43,60 +42,31 @@ function RegistrationForm(props) {
        setSearchItem(searchTerm)
      }
     let searchThree = []
-//practiseone two===============================================================================================
-
-
     const handleSearchTwo = (event) => {
-     if(event.target.name=="name"){
-        setName(event.target.value) 
-
-     } 
-     console.log(name,"string------------------")
-
-     if(event.target.name=="email"){
-        setEmail(event.target.value)
-
-     } 
-     if(event.target.name=="phone"){
-        setPhone(event.target.value) 
-
-     } 
-     if(event.target.name=="address"){
-        setAddesss(event.target.value) 
-
-     } 
-        console.log(name,email,phone,address, "event.target.value")
-
-
-
-    }
-    const submited=(event)=>{
-        event.preventDefault()
-    let obj={
-        name:name,
-        phone:phone,
-        email:email,
-        address:address
-    }
-    // setSubiting(obj)
-    console.log(searchThree,"searchtreee")
-    axios.post('http://localhost:9000/index/user', obj)
-    .then(res => {
-        console.log(res,"res")
-     let responseData = res
-     console.log(responseData,"responsedata")
-      //  if (responseData) {
-      //    const user = responseData
-        
-      //  } else {
-      //    alert('Something went wrong while creating account')
-      //  }
-    })
-    
-    console.log(obj,"obj")
-    }
-    //practise one two===================================================================================================
-    useEffect(()=>{
+        if(event.target.name=="name"){
+           setName(event.target.value) 
+   
+        } 
+        console.log(name,"string------------------")
+   
+        if(event.target.name=="email"){
+           setEmail(event.target.value)
+   
+        } 
+        if(event.target.name=="phone"){
+           setPhone(event.target.value) 
+   
+        } 
+        if(event.target.name=="address"){
+           setAddesss(event.target.value) 
+   
+        } 
+           console.log(name,email,phone,address, "event.target.value")
+   
+   
+   
+       }
+       useEffect(()=>{
         axios.get('http://localhost:9000/index/search')
         .then(res=>{
             console.log(res.data,"resdata-------------")
@@ -113,24 +83,6 @@ function RegistrationForm(props) {
           console.log(err)
         })
       },[])
-
-      console.log(data,"data")
-    //   useEffect(()=>{
-    //     axios.get('http://localhost:9000/index/searchOne')
-    //     .then(res=>{
-    //         console.log(res.data,"resdata-------------")
-         
-         
-    //         setData(res.data.searchData)
-       
-    //       return res
-    //     })
-        
-    //     .catch(err=>{
-    //       console.log(err)
-    //     })
-    //   },[])
-    //practiseone two================================================================================================
       let edit = (obj)=>{
         console.log(obj,"obj")
 
@@ -189,78 +141,34 @@ const deleteUser=(id)=>{
   
 
 }
-
-
-  useEffect(()=>{
-    let offset = (pageNumber - 1) * limit;
-    const slicedData = originalData.slice(offset, offset+limit)
-    setData(slicedData)
-  },[pageNumber])
-
-  const handlePageChange = (pageNumber) => {
-    setPageNumber(pageNumber)
-    let offset = (pageNumber - 1) * limit;
-    const slicedData = originalData.slice(offset, offset+limit)
-    setData(slicedData)
-
-  };
-  const next=()=>{
-    let nextpage= pageNumber+1
-    setPageNumber(nextpage)
-
-  }
-
-  const Previous=()=>{
-    let previous = pageNumber-1
-    setPageNumber(previous)
-  }
-  const pages=[]
-  if(total){
-    for(let i=0;i<total;i++){
-      pages.push(i)
-    }
-  }
-const  searchpost=()=>{
-  
-  let obj={
-    searchItem:searchItem
-  }
-  // setSubiting(obj)
-  console.log(searchThree,"searchtreee")
-  axios.post('http://localhost:9000/index/user', obj)
-  .then(res => {
-      console.log(res,"res")
-   let responseData = res
-   console.log(responseData,"responsedata")
-    //  if (responseData) {
-    //    const user = responseData
-      
-    //  } else {
-    //    alert('Something went wrong while creating account')
-    //  }
-  })
+const submited=(event)=>{
+    event.preventDefault()
+let obj={
+    name:name,
+    phone:phone,
+    email:email,
+    address:address
 }
-const onButtonClick = () => {
-     
-  // using Java Script method to get PDF file
-  fetch("SamplePDF.pdf").then((response) => {
-    console.log(response,"response====")
-      response.blob().then((blob) => {
-       
-          // Creating new object of PDF file
-          const fileURL =
-              window.URL.createObjectURL(blob);
-               
-          // Setting various property values
-          let alink = document.createElement("a");
-          alink.href = fileURL;
-          const fileNAme = new Date()
-          alink.download = `${fileNAme}.pdf`;
-          alink.click();
-      });
-  });
-};
-   return (
+// setSubiting(obj)
+console.log(searchThree,"searchtreee")
+axios.post('http://localhost:9000/index/user', obj)
+.then(res => {
+    console.log(res,"res")
+ let responseData = res
+ console.log(responseData,"responsedata")
+  //  if (responseData) {
+  //    const user = responseData
+    
+  //  } else {
+  //    alert('Something went wrong while creating account')
+  //  }
+})
+
+console.log(obj,"obj")
+}
+
+      console.log(data,"data")
+    return (
         <>
         {/* //practise one two */}
             <Form className='searchForm pd-0 mt-4'>
@@ -353,29 +261,7 @@ const onButtonClick = () => {
     ))
     
     }
-    <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only" onClick={()=>{Previous()}}>Previous</span>
-      </a>
-    </li>
-    {pages.map((num)=>(
-        <li class="page-item"><a class="page-link" onClick={()=>handlePageChange(num+1)}>{num+1}</a></li>
-    ))}
-   
-    {/* <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li> */}
-    <li class="page-item">
-      <a class="page-link" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only" onClick={()=>{next()}}>Next</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-<Login></Login>
+    
  {/* <div className="App">
       <h2 className="mt-5 px-4">React Bootstrap pagination example</h2>
 
@@ -410,51 +296,10 @@ const onButtonClick = () => {
     <td>10</td>
   </tr> */}
  {/* if(data){  */}
- <div>      
-      <input
-        type="text"
-       value={searchItem}
-        onChange={handleInputChange}
-       
-        placeholder='Type to search'
-      />
-      <Button  onClick={searchpost}>search</Button>
-    </div>
- <div style={{"display":"flex","margin-bottom": "23px"}}>
- {data.length>0&& data.map(obj=>( 
- <div style={{"display":"flex"}}>
- <div class="card" style={{"width": "18rem","margin-top": "30px","margin-left": "12px"}}>
- 
-  <div class="card-body" style={{"top": "16px","margin-left": "12px"}}>
-    <h5 class="card-title" style={{"margin-left": "12px"}}>Card title</h5>
-     <h6 class="card-subtitle mb-2 text-muted" style={{"top": "16px","margin-left": "12px"}}>{obj.name}</h6>
-    <p class="card-text" style={{    "top": "16px","margin-left": "12px"}}>{obj.email}</p>
-    <a href="#" class="card-link" style={{"top": "16px","margin-left": "12px"}}>{obj.phone}</a>
-    <a href="#" class="card-link" style={{"top": "16px","margin-left": "12px"}}>{obj.address}</a>
-  </div>
-  </div>
-</div>))}</div>
+
 {/* } */}
-<center>
-                <h1>Welcome to Geeks for Geeks</h1>
-                <h3>
-                    Click on below button to download PDF
-                    file
-                </h3>
-                <button onClick={onButtonClick}>
-                    Download PDF
-                </button>
-            </center>
-  <UploadButton uploader={uploader}
-                options={options}
-                onComplete={files => alert(files.map(x => x.fileUrl).join("\n"))}>
-    {({onClick}) =>
-      <button onClick={onClick}>
-        Upload a file...
-      </button>
-    }
-  </UploadButton>
-  <FileUpload></FileUpload>
+
+ 
 </table>
 
             </div>
@@ -463,4 +308,4 @@ const onButtonClick = () => {
     )
 }
 
-export default RegistrationForm;
+export default Practiseonetwo;
